@@ -1,0 +1,43 @@
+router.get('/:id',async(req,res)=>{
+   
+    try{
+        const alien=await Alien.findById(req.params.id)
+    res.json(alien)
+    }
+    catch(err){
+res.send('error'+err)
+    }
+})
+
+
+
+
+
+router.patch('/:id',async(req,res)=>{
+   
+    try{
+    const alien=await Alien.findById(req.params.id)
+    alien.sub=req.body.sub
+    const a1=await alien.save()
+    res.json(a1)
+    }
+    catch(err){
+res.send('error')
+    }
+})
+
+
+router.delete('/:id',async(req,res)=>{
+   
+    try{
+    const alien=await Alien.remove(req.params.id)
+    alien.sub=req.body.sub
+    const a1=await alien.remove()
+    res.json(a1)
+    }
+    catch(err){
+res.send('error')
+    }
+})
+
+
